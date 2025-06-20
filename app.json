@@ -1,0 +1,19 @@
+{
+   "expo": {"sdkVersion": "50.0.0",
+    "name": "NearKart",
+    "slug": "nearkart",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "nearkart",
+    "android": {
+      "package": "com.user.nearkart",
+      "versionCode": 1
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1f9dd1b9-82ea-4d2b-8443-a5979509a5cf"
+      }
+    }
+  }
+}
