@@ -4,7 +4,7 @@
     "slug": "nearkart",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon":  "./assets/icon.png",
     "scheme": "nearkart",
     "android": {
       "package": "com.user.nearkart",
