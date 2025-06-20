@@ -1,5 +1,5 @@
 {
-   "expo": {"sdkVersion": "50.0.0",
+  "expo": {
     "name": "NearKart",
     "slug": "nearkart",
     "version": "1.0.0",
