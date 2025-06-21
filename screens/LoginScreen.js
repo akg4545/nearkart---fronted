@@ -1,12 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-const LoginScreen = () => {
+export default function LoginScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Login Screen</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
+      <TextInput placeholder="Email" style={styles.input} />
+      <TextInput placeholder="Password" secureTextEntry style={styles.input} />
+      <Button title="Login" onPress={() => navigation.navigate('Home')} />
+      <Button title="Register" onPress={() => navigation.navigate('Register')} />
     </View>
   );
-};
+}
 
-export default LoginScreen;
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: 'center', padding: 20 },
+  title: { fontSize: 24, marginBottom: 20 },
+  input: { borderWidth: 1, padding: 10, marginBottom: 10 },
+});
