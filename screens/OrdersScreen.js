@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const OrdersScreen = () => {
+export default function OrdersScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Your Orders will appear here!</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -19,5 +19,3 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
-export default OrdersScreen;
