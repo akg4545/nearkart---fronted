@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <!-- Changed from splashscreen_background to splash_bg_final to break build cache -->
-  <color name="splash_bg_final">#FFFFFF</color>
+    <color name="splashscreen_background">#FFFFFF</color>
 </resources>
