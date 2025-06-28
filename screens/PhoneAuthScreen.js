@@ -1,7 +1,7 @@
 // screens/PhoneAuthScreen.js
 
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha';
 import { auth } from '../firebaseConfig';
 import { PhoneAuthProvider, signInWithCredential } from 'firebase/auth';
@@ -48,7 +48,7 @@ export default function PhoneAuthScreen({ navigation }) {
       />
       <TextInput
         placeholder="Enter phone number"
-        onChangeText={setPhoneNumber}
+        onChangeText={(text) => setPhoneNumber('+91' + text)}
         keyboardType="phone-pad"
         style={styles.input}
       />
