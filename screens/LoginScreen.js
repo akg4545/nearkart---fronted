@@ -1,7 +1,7 @@
 // screens/LoginScreen.js
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 
@@ -12,9 +12,10 @@ export default function LoginScreen({ navigation }) {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      Alert.alert('Success', 'Logged in successfully!');
+      Alert.alert('Login Successful');
+      navigation.navigate('Home');
     } catch (error) {
-      Alert.alert('Login Error', error.message);
+      Alert.alert('Login Failed', error.message);
     }
   };
 
@@ -41,11 +42,6 @@ export default function LoginScreen({ navigation }) {
         title="Register"
         onPress={() => navigation.navigate('Register')}
         color="gray"
-      />
-      <Button
-        title="Login with Phone"
-        onPress={() => navigation.navigate('PhoneAuth')}
-        color="darkorange"
       />
     </View>
   );
