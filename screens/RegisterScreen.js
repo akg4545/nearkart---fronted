@@ -12,10 +12,10 @@ export default function RegisterScreen({ navigation }) {
   const handleRegister = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      Alert.alert('Registered Successfully!');
+      Alert.alert('Success', 'Registered successfully!');
       navigation.navigate('Login');
     } catch (error) {
-      Alert.alert('Registration Failed', error.message);
+      Alert.alert('Registration Error', error.message);
     }
   };
 
@@ -27,8 +27,8 @@ export default function RegisterScreen({ navigation }) {
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
-        style={styles.input}
         autoCapitalize="none"
+        style={styles.input}
       />
       <TextInput
         placeholder="Password"
@@ -38,13 +38,22 @@ export default function RegisterScreen({ navigation }) {
         style={styles.input}
       />
       <Button title="Register" onPress={handleRegister} />
-      <Button title="Back to Login" onPress={() => navigation.navigate('Login')} />
+      <Button
+        title="Back to Login"
+        onPress={() => navigation.navigate('Login')}
+        color="gray"
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 20 },
-  title: { fontSize: 24, marginBottom: 20, textAlign: 'center' },
-  input: { borderWidth: 1, padding: 10, marginBottom: 10, borderRadius: 5 },
+  title: { fontSize: 24, marginBottom: 20 },
+  input: {
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
+  },
 });
