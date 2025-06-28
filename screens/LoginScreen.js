@@ -1,3 +1,5 @@
+// screens/LoginScreen.js
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -10,6 +12,7 @@ export default function LoginScreen({ navigation }) {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      Alert.alert('Success', 'Logged in successfully!');
       navigation.navigate('Home');
     } catch (error) {
       Alert.alert('Login Failed', error.message);
@@ -19,23 +22,11 @@ export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-      <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        style={styles.input}
-        autoCapitalize="none"
-        keyboardType="email-address"
-      />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        style={styles.input}
-      />
+      <TextInput placeholder="Email" style={styles.input} onChangeText={setEmail} />
+      <TextInput placeholder="Password" secureTextEntry style={styles.input} onChangeText={setPassword} />
       <Button title="Login" onPress={handleLogin} />
       <Button title="Register" onPress={() => navigation.navigate('Register')} />
+      <Button title="Login with Phone" onPress={() => navigation.navigate('PhoneAuth')} />
     </View>
   );
 }
