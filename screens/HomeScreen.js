@@ -1,37 +1,61 @@
 // screens/HomeScreen.js
 
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Button } from 'react-native';
 import { auth } from '../firebaseConfig';
 import { signOut } from 'firebase/auth';
 
 export default function HomeScreen({ navigation }) {
-  const user = auth.currentUser;
-
   const handleLogout = async () => {
     try {
       await signOut(auth);
       navigation.replace('Login');
     } catch (error) {
-      alert('Error signing out: ' + error.message);
+      alert('Logout failed');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to NearKart!</Text>
-      {user && (
-        <Text style={styles.email}>
-          Logged in as: {user.phoneNumber || user.email}
-        </Text>
-      )}
-      <Button title="Logout" onPress={handleLogout} />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>Welcome to NearKart!</Text>
+      <View style={styles.section}>
+        <Text style={styles.heading}>🛍️ Products</Text>
+        <Text>View nearby shop products.</Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={styles.heading}>🧾 Orders</Text>
+        <Text>Check and manage your orders.</Text>
+      </View>
+      <View style={styles.section}>
+        <Text style={styles.heading}>👤 Profile</Text>
+        <Text>Edit your profile and settings.</Text>
+      </View>
+      <Button title="Logout" onPress={handleLogout} color="red" />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  welcome: { fontSize: 22, fontWeight: 'bold', marginBottom: 20 },
-  email: { marginBottom: 20 },
+  container: {
+    padding: 20,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    marginBottom: 30,
+    textAlign: 'center',
+  },
+  section: {
+    marginBottom: 20,
+    padding: 15,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 10,
+  },
+  heading: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 5,
+  },
 });
