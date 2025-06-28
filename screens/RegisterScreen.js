@@ -1,45 +1,31 @@
+// screens/RegisterScreen.js
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebaseConfig'; // adjust the path if needed
+import { auth } from '../firebaseConfig';
 
 export default function RegisterScreen({ navigation }) {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async () => {
-    if (!email || !password) {
-      Alert.alert('Error', 'Please enter both email and password');
-      return;
-    }
-
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      Alert.alert('Success', 'Account created! Please log in.');
+      Alert.alert('Success', 'Account created successfully!');
       navigation.navigate('Login');
     } catch (error) {
-      Alert.alert('Registration Error', error.message);
+      Alert.alert('Registration Failed', error.message);
     }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Register</Text>
-      <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        style={styles.input}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        style={styles.input}
-      />
+      <TextInput placeholder="Name" style={styles.input} onChangeText={setName} />
+      <TextInput placeholder="Email" style={styles.input} onChangeText={setEmail} />
+      <TextInput placeholder="Password" secureTextEntry style={styles.input} onChangeText={setPassword} />
       <Button title="Register" onPress={handleRegister} />
     </View>
   );
