@@ -12,10 +12,9 @@ export default function LoginScreen({ navigation }) {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      Alert.alert('Login Success!');
-      navigation.navigate('Home');
+      Alert.alert('Success', 'Logged in successfully!');
     } catch (error) {
-      Alert.alert('Login Failed', error.message);
+      Alert.alert('Login Error', error.message);
     }
   };
 
@@ -24,28 +23,41 @@ export default function LoginScreen({ navigation }) {
       <Text style={styles.title}>Login</Text>
       <TextInput
         placeholder="Email"
-        style={styles.input}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
+        style={styles.input}
       />
       <TextInput
         placeholder="Password"
-        style={styles.input}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        style={styles.input}
       />
       <Button title="Login" onPress={handleLogin} />
-      <Button title="Register" onPress={() => navigation.navigate('Register')} />
-      <Button title="Login with OTP" onPress={() => navigation.navigate('PhoneAuth')} />
+      <Button
+        title="Register"
+        onPress={() => navigation.navigate('Register')}
+        color="gray"
+      />
+      <Button
+        title="Login with Phone"
+        onPress={() => navigation.navigate('PhoneAuth')}
+        color="darkorange"
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 20 },
-  title: { fontSize: 24, marginBottom: 20, textAlign: 'center' },
-  input: { borderWidth: 1, padding: 10, marginBottom: 10, borderRadius: 5 },
+  title: { fontSize: 24, marginBottom: 20 },
+  input: {
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
+  },
 });
